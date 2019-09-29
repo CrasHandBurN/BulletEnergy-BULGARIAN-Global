@@ -1,2 +1,2 @@
 # BulletEnergy-BULGARIAN-Global
-Български превод на форума Bullet Energy
+<a href="http://be.rdn-team.com/forum/showtopic-65/" target="_blank"><img src="https://img.shields.io/badge/Български%20превод%20на%20форума-Bullet%20Energy%201.3-blue"></a> <a href="https://dle-bg.pro/" target="_blank"><img src="https://img.shields.io/badge/dle-bg-red.svg"></a> <a href="https://img.shields.io/github/last-commit/CrasHandBurN/BulletEnergy-BULGARIAN-Global?style=plastic" target="_blank"><img src="https://img.shields.io/github/last-commit/CrasHandBurN/DataLifeEngine-BULGARIAN-Global.svg"></a> <a href="https://dle-bg.pro/" target="_blank"><img src="https://img.shields.io/github/downloads/CrasHandBurN/BulletEnergy-BULGARIAN-Global/total?style=social"></a>
