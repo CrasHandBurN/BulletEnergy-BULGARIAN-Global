@@ -1,0 +1,221 @@
+<?php
+$bullet_energy_lang_install = array(
+  'lng' => 'The installation is complete, you can go to the forum admin panel.',
+  'lng_0' => 'The required PHP extension PHP JSON could not be found. Please ask your host to install this extension.', //The required PHP extension JSON could not be found. Please ask your host to install this extension.
+  'lng_1' => 'The required PHP extension MB could not be found. Please ask your host to install this extension.', //The required PHP extension MB could not be found. Please ask your host to install this extension.
+  'lng_2' => 'Please carefully read the user agreement to use Bullet Energy.',
+  'lng_3' => 'Installation',
+  'lng_4' => 'Next',
+  'lng_5' => 'Checking files and directories.',
+  'lng_6' => 'not found!',
+  'lng_7' => 'found!',
+  'lng_8' => 'allowed',
+  'lng_9' => 'forbidden',
+  'lng_10' => 'Installing the module.',
+  'lng_11' => 'forum', //config
+  'lng_12' => 'Website', //config
+  'lng_13' => 'Community Forums', //config
+  'lng_14' => 'Forum, chat', //config
+  'lng_15' => 'This board is currently in the maintenance, after the completion of all works we will be back online. We apologize for the inconvenience.', //config
+  'lng_16' => 'Upload file', //config
+  'lng_17' => 'Important', //config
+  'lng_18' => 'Closed', //config
+  'lng_19' => 'Poll', //config
+  'lng_20' => 'Hot', //config
+  'lng_21' => 'Sorry, but cannot create file <b>.engine/bullet_energy/data/forum_config.php</b>.<br />Check the file/folder CHMOD!',
+  'lng_22' => 'Go to Control Panel',
+  'lng_23' => 'The forum "Bullet Energy 1.3" is installed and added to the Admin Section.',
+  'lng_24' => 'Completed actions:',
+  'lng_25' => 'Installation of Bullet Energy 1.3',
+  'lng_26' => 'Bullet Energy ',
+  'lng_27' => 'Forum Configurations.',
+  'lng_28' => 'To install the forum you must first log in to your website as an administrator.',
+  'lng_29' => 'The error was detected during files check, installation is not possible to to continue until you fix it. Detailed error information below:',
+  'lng_30' => array(
+    'The file ',
+    ' found a string, remove it, the line you want to delete:',
+    ' found to remove the line, rows to be deleted:',
+    ),
+  'lng_31' => 'Uninstall Bullet Energy Forum',
+  'lng_32' => 'To uninstall the Bullet Energy Forum, follow the instructions below:',
+  'lng_33' => 'Bullet Energy Forum is not installed.',
+  'lng_34' => 'Remove information from the database',
+  'lng_35' => 'All entries in the database are removed, remove the directory uploads/forum, as well as all versions of the same forum that you installed with script.',
+  'lng_36' => 'Unable to determine the current version of the forum.',
+  'lng_37' => 'No updates are required.',
+  'lng_38' => 'Sorry, but you cannot write information to a file <b>.engine/bullet_energy/data/forum_config.php</b>.<br />Check the file/folder CHMOD!',
+  'lng_39' => 'Updating the database is complete, run the update files.',
+  'lng_40' => 'Upgrade Bullet Energy',
+  'lng_41' => 'Upgrade is not required, you have the current version of the forum.',
+  'lng_42' => 'Enter the address of the page in the forum to further address the forum can not be changed, by default, is situated at the Forum page ',
+  'lng_43' => '<input type="text" name="locate_main" value="" placeholder="Enter your option instead of forum" style="margin-bottom: 210px;border:1px solid #999999;margin-top:15px;padding:3px;width:250px;"/>',
+  'lng_44' => ' In the box below you can enter its own version.',
+  'lng_45' => 'Forum you will be located at: ',
+  'lng_46' => 'Please, when edit files be very careful!.',
+  'lng_47' => 'Open main.tpl from your theme folder and before &lt;/head&gt; add <strong>{forumStyle}</strong><br><br>Open file .htaccess from root of your site and find <strong>RewriteEngine On</strong> add after: <br>',
+  'lng_48' => 'Open the file index.php and after the line <strong>$tpl->load_template(\'main.tpl\');</strong> add:<br>
+          <textarea style="height:14px;width:98%">$tpl->set(\'{forumStyle}\', require_once ROOT_DIR . \'/engine/bullet_energy/modules/load_style.php\');</textarea>
+          <br>
+          <br>
+          Open file engine.php and find <strong>switch ($do) {</strong> add after:<br><textarea style="height:14px;width:98%">case "',
+  'lng_49' => ' Click to check.',
+  'lng_50' => '": include ENGINE_DIR . \'/bullet_energy/index.php\'; break;</textarea>
+          <br>
+          <br>
+          Open <strong>file engine/modules/banned.php</strong> and find the line:<br>
+          <textarea style="height:14px;width:98%">if( $row[\'users_id\'] ) $db->query( "UPDATE " . USERPREFIX . "_users SET banned=\'\' WHERE user_id = \'{$row[\'users_id\']}\'" );</textarea>
+          Replace with:<br>
+          <textarea style="height:160px;width:98%">if($row[\'users_id\']) {
+      $db->query("UPDATE " . USERPREFIX . "_users SET banned=\'\' WHERE user_id = \'{$row[\'users_id\']}\'");
+      $forumInfoUser = $db->super_query("SELECT forum_warning FROM " . PREFIX . "_users WHERE user_id = \'{$row[\'users_id\']}\'");
+      if($forumInfoUser == 100) {
+         $db->query("INSERT INTO " . PREFIX . "_be_user_warning (id, moderator_id, post_id, date, description, id_user, date_out, action, type, ball) VALUES (NULL, \'1\', \'0\', \'{$this_time}\', \'Lower the level of warning after blocked.\', \'{$row[\'users_id\']}\', \'0\', \'down\', \'message\', \'10\')");
+         $db->query("UPDATE " . PREFIX . "_users SET forum_warning = forum_warning - 10 WHERE user_id = {$row[\'users_id\']} LIMIT 1");
+      }
+}</textarea>
+          <br>
+          <br>
+          Open the file <strong>/engine/init.php</strong> and find <strong>include_once ENGINE_DIR . \'/modules/rssinform.php\';</strong> add after:<br>
+          <textarea style="height:14px;width:98%">require_once (\'engine/bullet_energy/api/bullet_api.class.php\');</textarea>
+          <br>
+           
+          <br>',
+  'licence' => '<script type="text/javascript">
+check_eula = function()
+{
+	if( document.getElementById(\'go\').checked == true ){
+		return true;
+		}
+	else{
+		alert(\'You must accept the license agreement before continuing with the installation.\');return false;}
+		}
+document.getElementById(\'install_form\').onsubmit = check_eula;
+</script>
+<div class="license"><b>End user license agreement</b><br />(<span style="color:#red !important"><b>Note: this is web translation, so the words is not accurated to please prefer to Russian version for actual End User Rights!</b>)<br />
+  <br />
+  <b>The subject of the license agreement</b><br />
+<br />
+   The subject of this license agreement is the right to use one licensed copy of software <b>Bullet Energy</b>, in the manner and on terms and conditions set forth in this agreement.
+  <br />
+  <br /><b>content of agreement</b><br />
+<br />
+The term of customer service from date of purchase of one licensed copy of software Bullet Energy to the base license is <b> one year </ b>. If upon the expiration of the service, you decide not to renew his action, then your software will be fully operational, but without our support, and without the provision of new versions of the script, except for critical updates script. <br />
+  <br />
+  In the case of the acquisition and use only the basic license for the script, customer service, the duration of the license agreement is only the provision of standard services for: the provision of distribution, new versions of the script, critical updates script. Technical support for the basic license is not granted. For technical support on the script, users must be licensed, which includes technical support, or be a subscriber to customer support. <br />
+  <br />
+  We reserve the right to publish lists of favorite users of its software products. We reserve the right at any time change the terms of this agreement, but these actions are not retroactive. Changes to this agreement will be sent to users by e-mail to the addresses specified when purchasing the product.  
+  <br />
+  <br />
+  <b>Limited of use</b><br />
+<br />
+By purchasing a license for the software <b>Bullet Energy</b>, you should know that not buying copyrights to the software. You acquire only the right to use <b> </ b> software on a single Web site (a second-level domain or a subdomain), owned by you or your client. To use the script on another site, you must purchase a license to repeat, or to contact the technical support is bound to change before the domain name. Script can not be resold to third parties, and if you get the script to your clients, you are obliged to inform your customers with the license agreement. Also in the case of purchase of the script is not for their own use and for installation on sites of your clients, we undertake no obligation to support your customers.  
+  <br />
+  <br />
+  <b>The rights and obligations of the clients</b><br />
+  <br />
+  <b>The client has the right to:</b>
+  <ul>
+<li> modify the design in accordance with the needs of your site. </li>
+     <li> produce and distribute instructions on how to set up your template modifications. </li>
+     <li> create modules that will interact with our product, indicating that this is your original product. </li>
+</ul>
+  <br />
+  <b>The client has no right to:</b>
+  <ul>
+<li> transfer rights to use the software to third parties. </li>
+     <li> modify the structure of program code, program functions, in order to create related products </li>
+     <li> create separate stand-alone products based on our code </li>
+     Use <li> copy software Bullet Energy under a single license on more than one site (a second-level domain or a subdomain) </li>
+     <li> Advertise, sell or publish on its website pirated copies of our software product </li>
+     <li> distribute or facilitate distribution of unlicensed copies of software Bullet Energy </li>
+     <li> Delete, modify the mechanisms of the original check for a license to use the script </li>
+     <li> Delete, modify the source code, or an active hyperlink to the site product </li>
+</ul>
+  <br />
+  <b>Product updates and technical support:</b>
+  <ul>
+    <li> By constantly improving the product based on the wishes of our customers and our own developments in the field of programming. </ li>
+    <li> Updated versions of the Products, which includes bug fixes and some improvements have been supported by the features and capabilities available to the Buyer free of charge </li>
+    <li> By continually working to improve products and reserves the right to release new versions of products for a fee (in the case of providing significant improvements and/or adding new features). </li>
+    <li> author makes every effort to provide a qualified answer to every query within 24 hours of receipt. </li>
+    <li> author does not provide support for customization and refinement of PHP-scripts and HTML/CSS-template (including on changing the web design of any part of the product) and does not perform similar work for free on demand. </li>
+    <li> author does not provide training services technologies used in product development (php, html, css, etc.). </li>
+    <li> In the case of user changes in the product author does not guarantee compatibility updates with a modified version of the product and disclaims any liability for the further maintenance of the modified product, including the obligation to provide support. </li>
+  </ul>
+  <br />
+  <b>Privacy Policy:</b>
+  <ul>
+<li> author respects the user private information. Any information provided by User is not disclosed and not disclosed to third parties, unless required by law enforcement agencies in accordance with applicable law. </li>
+     <li> author uses e-mail address specified in the purchase of a product, only to send messages that are required to process customer orders, to send notifications about product updates </li>  
+</ul>
+  <br />
+  <b>Refund Policy :</b>
+  <ul>
+<li>To avoid misunderstandings, the user must carefully review the User Guide and other reference materials, obtained by purchasing the Product. </li>
+     <li>Due to the fact that the author provides an intangible product that is not refundable physically refund User is only possible if the purchased product does not meet the functionality stated in the author website, as well as after the author will be found that this discrepancy is indeed present. </li>
+     <li>Lack of knowledge of the User is not grounds for refund. </li>
+  </ul>
+  <br />
+  <b>Limitation of warranty</b><br />
+  <br />
+  We want to note that the security mechanisms that are installed on <b>Bullet Energy</b>, have known limitations, and despite the fact that we make every effort to ensure the security of the script, you must be familiar with , no absolute guarantee against breaking your site. Also, our warranty and technical support are not subject to the modifications made by a third party, including changes to the code, style, language packs, as well as changes in these parts, made ​​by the licensee on their own. If you change the software or a third party, we may deny you support. You should be aware that the software <b>Bullet Energy</b> can not be returned or exchanged.<br />
+  <br />
+  <b>Early cancellation contract obligations</b><br />
+  <br />
+  This Agreement shall terminate automatically if you fail to comply with the terms of our agreement. This license agreement may be terminated unilaterally by us, in case of violations of the licensing agreement. In the event of early termination of the contract you agree to delete all your copies of our software within 3 working days of receipt of notice.
+  <br />
+  <div class="mt5">
+    <input type="checkbox" value="1" id="go" name="go" />
+    <label for="go">Accept User Agreement</label>
+  </div>
+</div>','lng_51'=>'Open file <strong>engine/inc/editusers.php</strong> and find:
+            <textarea style="height:14px;width:98%">$db->query("UPDATE " . PREFIX . "_images SET author=\'$editlogin\' WHERE author=\'{$row[\'name\']}\'") ;</textarea>
+            <br>
+            Add after:<br>
+            <textarea style="height:90px;width:98%">$db->query("UPDATE " . PREFIX . "_be_attachment SET attachment_user_name = \'$editlogin\' WHERE attachment_user_name = \'{$row[\'name\']}\'") ;
+$db->query("UPDATE " . PREFIX . "_be_complaint SET ct_from = \'$editlogin\' WHERE ct_from = \'{$row[\'name\']}\'") ;
+$db->query("UPDATE " . PREFIX . "_be_message SET message_autor = \'$editlogin\' WHERE message_autor = \'{$row[\'name\']}\'") ;
+$db->query("UPDATE " . PREFIX . "_be_moderator SET moderator_name = \'$editlogin\' WHERE moderator_name = \'{$row[\'name\']}\'");
+$db->query("UPDATE " . PREFIX . "_be_topic SET autor = \'$editlogin\' WHERE autor = \'{$row[\'name\']}\'") ;</textarea>
+            <br>
+            In the same file, Find:
+            <textarea style="height:14px;width:98%">$db->query("delete FROM " . USERPREFIX . "_pm WHERE user=\'$id\'") ;</textarea>
+            <br>
+            Add after:<br>
+            <textarea style="height:90px;width:98%">$db->query("DELETE FROM " . PREFIX . "_be_complaint WHERE ct_from = \'{$row[\'name\']}\'") ;
+$db->query("DELETE FROM " . PREFIX . "_be_feed WHERE id_user =\'$id\'") ;
+$db->query("DELETE FROM " . PREFIX . "_be_message WHERE autors_id =\'$id\'") ;
+$db->query("DELETE FROM " . PREFIX . "_be_moderator WHERE moderator_id =\'$id\'") ;
+$db->query("DELETE FROM " . PREFIX . "_be_thanks WHERE thanks_id_user = \'$id\'") ;
+$db->query("DELETE FROM " . PREFIX . "_be_topic WHERE autor_id = \'$id\'") ;</textarea>
+            <br>
+            In the same file, find:
+            <textarea style="height:15px;width:98%">{$output}</textarea>
+            <br />
+            Add <span style="color:red">BEFORE</span>:
+            <textarea style="height:30px;width:98%">&lt;tr>&lt;td colspan="3">&lt;hr>&lt;/td>&lt;/tr>&lt;tr>&lt;td style="padding:4px;">Delete all posts and topics on the forum&lt;/td>&lt;td colspan="2">&lt;input type="checkbox" name="del_post_forum" value="yes" />&lt;/td>&lt;/tr></textarea>
+            <br>
+            In the same file, find:
+            <textarea style="height:15px;width:98%">if($_POST[\'del_comments\']) {</textarea>
+            <br />
+            Add <span style="color:red">BEFORE</span>:
+            <textarea style="height:150px;width:98%">if($_POST[\'del_post_forum\']) {   $result = $db->query("SELECT COUNT(*) as count, id_topic FROM " . PREFIX . "_be_message WHERE autors_id=\'$id\' GROUP BY id_topic") ;
+    while ($row = $db->get_array($result)) {
+      $db->query("UPDATE " . PREFIX . "_be_topic SET reply_count=reply_count-{$row[\'count\']} where id=\'{$row[\'id_topic\']}\'") ;
+    }
+    $db->free($result) ;
+    $db->query("DELETE FROM " . PREFIX . "_be_topic WHERE autor_id = \'$id\'") ;
+    $db->query("DELETE FROM " . PREFIX . "_be_message WHERE autors_id = \'$id\'") ;
+    $db->query("UPDATE " . USERPREFIX . "_users set forum_post_count=\'0\',forum_topic_count=\'0\' where user_id =\'$id\'") ;
+  }</textarea>
+            <br><br><span style="color:red">Instructions go beyond only appropriate for CMS version 9.6 +, If your version of DLE is older then  check out the <a target="_blank" href="http://white-master.ru/forum/showtopic-1372">Forum Topic</a>.</span><br /><br />In general settings (System Settings) for DLE in the "Enable status \'Live\' for users on the site," should be "Yes" if you do not, then the function may not work e-mail notifications (this setting is not present in DLE 9.6, so you can follow the instructions below).<br /><br />Open the file <strong>engine/modules/sitelogin.php</strong>, find:<textarea style="height:17px;width:98%">$db->query("UPDATE LOW_PRIORITY " . USERPREFIX . "_users SET lastdate=\'{$_TIME}\' WHERE user_id=\'{$member_id[\'user_id\']}\'") ;</textarea>Add <span style="color:red">After</span>:<textarea style="height:17px;width:98%">$db->query("DELETE FROM " . PREFIX . "_be_event_log WHERE id_user = {$member_id[\'user_id\']}") ;</textarea><br /><br />In the same file, find:<textarea style="height:17px;width:98%">if($config[\'log_hash\']) {</textarea><span style="color:red">Replace</span> with:<textarea style="height:30px;width:98%"> if($config[\'log_hash\']) {
+   $db->query("DELETE FROM " . PREFIX . "_be_event_log WHERE id_user = {$member_id[\'user_id\']}") ;</textarea><br /><br />In the same file, find the line:<textarea style="height:60px;width:98%">} else
+        $db->query("UPDATE LOW_PRIORITY " . USERPREFIX . "_users set lastdate=\'{$_TIME}\', logged_ip=\'" . $_IP . "\' WHERE user_id=\'{$member_id[\'user_id\']}\'") ;
+      $is_logged = TRUE ;</textarea><span style="color:red">Replace</span> with:<textarea style="height:90px;width:98%">} else {
+        $db->query("UPDATE LOW_PRIORITY " . USERPREFIX . "_users set lastdate=\'{$_TIME}\', logged_ip=\'" . $_IP . "\' WHERE user_id=\'{$member_id[\'user_id\']}\'") ;
+        $db->query("DELETE FROM " . PREFIX . "_be_event_log WHERE id_user = {$member_id[\'user_id\']}") ;
+      }
+      $is_logged = TRUE ;</textarea>') ;
+@setlocale(LC_ALL, "en") ;
+
+?>
